@@ -1,0 +1,134 @@
+body {
+    background: #333;
+    color: #444;
+    font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: #666;
+}
+
+.slide {
+    background: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+h1 strong {
+    border-radius: 100%;
+    background-color: #aaa;
+    color: white;
+    height: 1em;
+    width: 1em;
+    padding-top: 0.2em;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    display: inline-block;
+}
+
+
+h1 strong.blue {
+    background-color: #008bb8;
+}
+
+h1 strong.red {
+    background-color: #f45787;
+}
+
+h1 strong.green {
+    background-color: #88dd88;
+}
+
+
+strong.rounded {
+    color: white;
+    border-radius: 100%;
+    background-color: #aaa;
+    height: 1em;
+    width: 1em;
+    padding-top: 0.2em;
+    padding-left: 0.2em;
+    display: inline-block;
+}
+
+strong.rounded.green {
+    background-color: #88dd88;
+}
+
+
+
+strong.rounded.red {
+    background-color: #f45787;
+}
+
+
+strong.rounded.blue {
+    background-color: #008bb8;
+}
+
+
+ul.non-bullet {
+    list-style: none;
+}
+
+div.title_slide {
+    background-color: #4a93cd;
+    color: white;
+}
+
+div.title_slide h1 {
+    color:white;
+    font-weight: 600;
+}
+
+div.title_slide h2 {
+    color: white;
+}
+
+div.section_slide {
+    background-color: #4a93cd;
+    color: white;
+}
+
+div.section_slide h1, div.section_slide h2, div.section_slide h3 {
+    color: white;
+}
+
+div.section_slide ul {
+    list-style: none;
+}
+
+pre.sh_sourceCode .sh_keyword {
+    color: #4848e8;
+}
+
+pre.sh_sourceCode .sh_string, pre.sh_sourceCode .sh_number {
+    color: #800080;
+    font-weight: bold;
+}
+
+pre.sh_sourceCode .sh_comment {
+    font-weight: bold;
+}
+
+div.content code {
+    background-color: #dedede;
+    font-size: 120%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+div.code_slide, div.code_slide pre.sh_sourceCode, div.code_slide code {
+    background-color: #333333;
+    color: #ccc;
+}
+
+div.content pre.sh_sourceCode code {
+    font-size: 85%;
+    background-color: transparent;
+}

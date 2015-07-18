@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Continuous Delivery - Patterns and Anti-Patterns</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+  <link rel="stylesheet" href=".//css/reset.css" type="text/css"/>
+
+
+  <link type="text/css" href=".//css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/sh_style.css" rel="stylesheet" />
+  <link type="text/css" href=".//css/tipsy.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href=".//css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src=".//js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src=".//js/jquery-print.js"></script>
+  <script type="text/javascript" src=".//js/jquery.batchImageLoad.js"></script>
+  <script type="text/javascript" src=".//js/jquery.parsequery.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.doubletap-0.1.js"></script>
+  <script type="text/javascript" src=".//js/jquery.tipsy.js"></script>
+
+  <script type="text/javascript" src=".//js/fg.menu.js"></script>
+  <script type="text/javascript" src=".//js/showoff.js"></script>
+  <script type="text/javascript" src=".//js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src=".//js/sh_main.min.js"></script>
+  <script type="text/javascript" src=".//js/core.js"></script>
+  <script type="text/javascript" src=".//js/showoffcore.js"></script>
+  <script type="text/javascript" src=".//js/coffee-script.js"></script>
+
+
+    <link rel="stylesheet" href=".//file/custom.css" type="text/css"/>
+
+
+  <script type="text/javascript">
+    $(function(){
+      setupPreso(false, './');
+    });
+
+    editUrl  = "";
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+<a tabindex="1" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="stylemenu"><span class="ui-icon ui-icon-triangle-1-s"></span>styles</a>
+<div id="stylepicker" class="hidden"></div>
+
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">b</td><td>blank screen</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">g</td><td>toggle follow</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
+    <tr><td class="key">s</td><td>choose style</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso"><center>loading presentation...</center></div>
+<div id="footer">
+  <span id="followMode"></span>
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+  <span id="slideFilename"></span>
+  <img id="disconnected" src=".//css/disconnected.png" />
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div id="01_title_title" class="slide title_slide" data-transition="none">
+<div class="content title_slide" ref="01_title/title">
+<h1>Continuous Delivery <br> Patterns and Anti-Patterns</h1>
+
+<h2>Helmut Hummel &amp; Michael Lihs</h2>
+</div>
+</div>
+<div id="02_about_us_about_us" class="slide " data-transition="none">
+<div class="content " ref="02_about_us/about_us/1">
+<h1>@helhum</h1>
+
+<h1>insight.helhum.io</h1>
+</div>
+</div>
+<div id="02_about_us_about_us" class="slide " data-transition="none">
+<div class="content " ref="02_about_us/about_us/2">
+<h1>@kaktusmimi</h1>
+
+<h1>lihsmi.ch</h1>
+</div>
+</div>
+<div id="03_agenda_agenda" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="03_agenda/agenda">
+<h1>Agenda</h1>
+
+<ul>
+<li>Organize your Teams, Workflow and Projects</li>
+<li>Using the right Tests</li>
+<li>Deployment Strategies</li>
+<li>Monitoring TYPO3 Applications</li>
+<li>Anti-Patterns</li>
+<li>Conclusion</li>
+</ul>
+</div>
+</div>
+<div id="04_introduction_introduction" class="slide " data-transition="none">
+<div class="content " ref="04_introduction/introduction">
+<h1>The Big Picture</h1>
+
+<p><img src="./file/04_introduction/ci_cd_overview.png" width="900px"></p>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_organize_teams_workflow/organize_teams_workflow/1">
+<h1>Organize your Teams</h1>
+
+<h2>On our way towards a DevOps Mindset</h2>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide " data-transition="none">
+<div class="content " ref="05_organize_teams_workflow/organize_teams_workflow/2">
+<h1>It's (all) about Feedback</h1>
+
+<ul>
+<li>Establish and support a culture of feedback in your development teams</li>
+<li>Enable pair-programming sessions</li>
+<li>Establish a code-review workflow</li>
+</ul>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide " data-transition="none">
+<div class="content " ref="05_organize_teams_workflow/organize_teams_workflow/3">
+<h1>Small Batches</h1>
+
+<ul>
+<li>Work in small batches</li>
+<li>Smaller batches result in faster feedback</li>
+<li>Big changes make review a cumbersome thing to do</li>
+<li>
+<em>[SMELL]</em> Long living feature branches</li>
+</ul>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide " data-transition="none">
+<div class="content " ref="05_organize_teams_workflow/organize_teams_workflow/4">
+<h1>Cross-reference Issues</h1>
+
+<ul>
+<li>Integrate your development workflow with the project management workflow</li>
+<li>Label your commits with your ticket numbers</li>
+<li>Link code changes with with tickets and vice versa</li>
+<li>Label (acceptance) tests with ticket numbers</li>
+</ul>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_organize_teams_workflow/organize_teams_workflow/5">
+<h1>Version Control</h1>
+
+<h2>Workflows and Code Review</h2>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide " data-transition="none">
+<div class="content " ref="05_organize_teams_workflow/organize_teams_workflow/6">
+<h1>Version Control Workflow</h1>
+
+<ul>
+<li>There are many workflows</li>
+<li>It doesn't matter which one you chose</li>
+<li>Chose one and stick to it</li>
+</ul>
+</div>
+</div>
+<div id="05_organize_teams_workflow_organize_teams_workflow" class="slide " data-transition="none">
+<div class="content " ref="05_organize_teams_workflow/organize_teams_workflow/7">
+<h1>Recommendation Gitlab Merge Request Workflow</h1>
+
+<ul>
+<li>Easy to implement</li>
+<li>Fully supported by open source Gitlab</li>
+<li>Supports short living feature branches</li>
+<li>Little to no learning required</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_organize_your_projects/organize_your_projects/1">
+<h1>Organize your Projects</h1>
+
+<h2>Preperation for Continuous Delivery</h2>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/2">
+<h1>Keep everything in Version Control</h1>
+
+<ul>
+<li>Configuration</li>
+<li>Testdata</li>
+<li>Continuous Integration Jobs</li>
+<li>Infrastructure Code</li>
+<li>Deployment Scripts</li>
+<li>
+<em>[SMELL]</em> Configuration in database (TS)</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/3">
+<h1>Environmental Awareness</h1>
+
+<ul>
+<li>Development</li>
+<li>Integration</li>
+<li>Staging</li>
+<li>Production</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/4">
+<h1>Development Environment</h1>
+
+<ul>
+<li>Maximize log output</li>
+<li>Disable all caching</li>
+<li>Provide production-like environment
+
+<ul>
+<li>OS, Packages, Versions...</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/5">
+<h1>Testing Environment</h1>
+
+<ul>
+<li>Use separate database
+
+<ul>
+<li>Don't "override" development data</li>
+</ul>
+</li>
+<li>Use production context (Flow)
+
+<ul>
+<li>Might make things a lot faster</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/6">
+<h1>Staging Environment</h1>
+
+<ul>
+<li>For customer review</li>
+<li>Stick to production settings</li>
+<li>Remember access restrictions</li>
+<li>
+<code>robots.txt</code> might be a good idea!</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/7">
+<h1>Production</h1>
+
+<ul>
+<li>Turn off logging</li>
+<li>Enable caches</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/8">
+<h1>Implementing Environments</h1>
+
+<ul>
+<li>Use <code>TYPO3_CONTEXT</code>
+</li>
+<li>Use environment variables
+
+<ul>
+<li>Apache <code>set_env TYPO3_CONTEXT</code>
+</li>
+<li>CLI <code>export TYPO3_CONTEXT</code>
+</li>
+</ul>
+</li>
+<li>Include different <code>Settings</code> files</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_organize_your_projects/organize_your_projects/9">
+<h1>Reproducible Environments</h1>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/10">
+<h1>Prepare for Update and Disaster Recovery</h1>
+
+<ul>
+<li>Use Configuration Management if possible</li>
+<li>At least: Document setup very well</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_organize_your_projects/organize_your_projects/11">
+<h1>Tasks</h1>
+
+<h2>Automate all your Tasks</h2>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide " data-transition="none">
+<div class="content " ref="06_organize_your_projects/organize_your_projects/12">
+<h1>Build Tasks</h1>
+
+<ul>
+<li>Composer</li>
+<li>CSS, JavaScript, Sprites</li>
+<li>Database migrations</li>
+<li>Database import / export</li>
+</ul>
+</div>
+</div>
+<div id="06_organize_your_projects_organize_your_projects" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_organize_your_projects/organize_your_projects/13">
+<h1>TYPO3 Console</h1>
+
+<pre><code>typo3_project_root $ ./typo3cms</code></pre>
+</div>
+</div>
+<div id="07_testing_testing" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_testing/testing/1">
+<h1>Tests Tests Tests</h1>
+
+<h2>Use the right tests - use testing right</h2>
+</div>
+</div>
+<div id="07_testing_testing" class="slide " data-transition="none">
+<div class="content " ref="07_testing/testing/2">
+<h1>Testing Principles</h1>
+
+<ul>
+<li>Avoid manual acceptance testing</li>
+<li>Take care of your testdata</li>
+<li>Write tests
+
+<ul>
+<li>isolated</li>
+<li>independent of execution order</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="07_testing_testing" class="slide " data-transition="none">
+<div class="content " ref="07_testing/testing/3">
+<h1>Unit Tests</h1>
+
+<ul>
+<li>Build the thing right?</li>
+<li>Offer very specific feedback</li>
+<li>Are very fast</li>
+</ul>
+</div>
+</div>
+<div id="07_testing_testing" class="slide " data-transition="none">
+<div class="content " ref="07_testing/testing/4">
+<h1>End-to-End Tests</h1>
+
+<ul>
+<li>Build the right thing?</li>
+<li>Tell you whether your application works</li>
+<li>Are quite slow</li>
+</ul>
+</div>
+</div>
+<div id="07_testing_testing" class="slide " data-transition="none">
+<div class="content " ref="07_testing/testing/5">
+<h1>Testing doesn't stop with development</h1>
+
+<ul>
+<li>Monitoring tests
+
+<ul>
+<li>Is your application alive?</li>
+</ul>
+</li>
+<li>Performance tests
+
+<ul>
+<li>How fast is my website</li>
+<li>Did the last deployment break something?</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="08_deployment/deployment/1">
+<h1>Deployment</h1>
+
+<h2>Ship your Application</h2>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide " data-transition="none">
+<div class="content " ref="08_deployment/deployment/2">
+<h1>How to handle User Data</h1>
+
+<ul>
+<li>Independent directory structure for user data</li>
+<li>Separate project files from user data
+
+<ul>
+<li>Templates</li>
+<li>CSS</li>
+<li>Sprites, Icons...</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide " data-transition="none">
+<div class="content " ref="08_deployment/deployment/3">
+<h1>Where to build stuff</h1>
+
+<ul>
+<li>Don't build things on (production) servers</li>
+<li>Use integration server</li>
+<li>Ship as package</li>
+<li>
+<em>[SMELL]</em> git on (production) servers</li>
+</ul>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide " data-transition="none">
+<div class="content " ref="08_deployment/deployment/4">
+<h1>Rollback</h1>
+
+<ul>
+<li>Rollback for files is easy</li>
+<li>Rollback for database is hard</li>
+<li>Prepare for disaster recovery</li>
+</ul>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide " data-transition="none">
+<div class="content " ref="08_deployment/deployment/5">
+<h1>Handling of external services</h1>
+
+<ul>
+<li>Solr needs configuration &amp; restart</li>
+<li>Cache clearing in
+
+<ul>
+<li>Varnish</li>
+<li>Memcached / Redis</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide " data-transition="none">
+<div class="content " ref="08_deployment/deployment/6">
+<h1>Recommended Tool</h1>
+
+<ul>
+<li>TYPO3 Surf</li>
+<li>Many best-practices and pre-defined tools for
+
+<ul>
+<li>TYPO3</li>
+<li>Neos</li>
+<li>Flow</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="08_deployment_deployment" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="08_deployment/deployment/7">
+<h1>Basic Principles</h1>
+
+<ul>
+<li>"If it hurts, do it more often!"</li>
+<li>
+<em>[SMELL]</em> Checklists are  no deployment strategy</li>
+<li>
+<em>[SMELL]</em> handing over source code to some ops guys: "We build it - you run it!"</li>
+</ul>
+</div>
+</div>
+<div id="09_monitoring_monitoring" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="09_monitoring/monitoring/1">
+<h1>Monitoring TYPO3 Applications</h1>
+
+<h2>Check the Heartbeat of your Application</h2>
+</div>
+</div>
+<div id="09_monitoring_monitoring" class="slide " data-transition="none">
+<div class="content " ref="09_monitoring/monitoring/2">
+<h1>Profiling vs. Monitoring</h1>
+
+<ul>
+<li>Profiling is analyzing single requests
+
+<ul>
+<li>Mostly during development</li>
+</ul>
+</li>
+<li>Monitoring is an aggregated view on your application
+
+<ul>
+<li>Mostly during operations</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="09_monitoring_monitoring" class="slide " data-transition="none">
+<div class="content " ref="09_monitoring/monitoring/3">
+<h1>Monitoring Task Examples</h1>
+
+<ul>
+<li>Is the homepage showing</li>
+<li>Does the FE user login work</li>
+<li>Does the search work</li>
+<li>Is the tt_news ticker showing some news</li>
+<li>Are there any severe log entries</li>
+</ul>
+</div>
+</div>
+<div id="09_monitoring_monitoring" class="slide " data-transition="none">
+<div class="content " ref="09_monitoring/monitoring/4">
+<h1>How to implement<br> Monitoring Tasks</h1>
+
+<ul>
+<li>Use rock solid technology
+
+<ul>
+<li>Selenium is fragile!</li>
+</ul>
+</li>
+<li>Use Jenkins as a task runner</li>
+<li>Send emails or IM messages to developers</li>
+<li>Set up dashboards</li>
+</ul>
+</div>
+</div>
+<div id="09_monitoring_monitoring" class="slide " data-transition="none">
+<div class="content " ref="09_monitoring/monitoring/5">
+<h1>Third-party Applications</h1>
+
+<ul>
+<li>gtmetrix for page speed</li>
+<li>NewRelic for full stack monitoring / profiling</li>
+<li>Gatling for performance testing</li>
+</ul>
+</div>
+</div>
+<div id="09_monitoring_monitoring" class="slide " data-transition="none">
+<div class="content " ref="09_monitoring/monitoring/6">
+<h1>Logfile management</h1>
+
+<ul>
+<li>Log files provide a valuable source of information</li>
+<li>Often scattered all over the system</li>
+<li>Use logfile management tools like
+
+<ul>
+<li>Logstash / Heka</li>
+<li>ElasticSearch</li>
+<li>Kibana</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/1">
+<h1>Conclusion</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/2">
+<h1>Continuous Delivery...</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/3">
+<h1>...is something you cannot simply "switch on" <br>or buy in a product</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/4">
+<h1>...is a "people thing"</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/5">
+<h1>...is hard to set up - unless you take very small steps</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/6">
+<h1>...is something you don't want to miss, once you have it</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/7">
+<h1>...increases your productivity and the quality of your work</h1>
+</div>
+</div>
+<div id="10_conclusion_conclusion" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_conclusion/conclusion/8">
+<h1>You can only win!!!</h1>
+</div>
+</div>
+<div id="99_resources_resources" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="99_resources/resources/1">
+<h1>Questions?</h1>
+</div>
+</div>
+<div id="99_resources_resources" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="99_resources/resources/2">
+<h1>READ!Me</h1>
+</div>
+</div>
+<div id="99_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="99_resources/resources/3">
+<h1>Books</h1>
+
+<p><img src="./file/99_resources/continuous_delivery.jpg" height="500px"></p>
+</div>
+</div>
+<div id="99_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="99_resources/resources/4">
+<h1>Books</h1>
+
+<p><img src="./file/99_resources/dpunkt.png" height="500px"></p>
+</div>
+</div>
+<div id="99_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="99_resources/resources/5">
+<h1>Books</h1>
+
+<p><img src="./file/99_resources/release_it.png" height="500px"></p>
+</div>
+</div>
+
+</div>
+<div id="pauseScreen">
+  Paused
+</div>
+
+</body>
+</html>

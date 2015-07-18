@@ -1,0 +1,19 @@
+{
+  "name": "Continuous Delivery - Patterns and Anti-Patterns",
+  "description": "",
+  "author": "Michael Lihs, Helmut Hummel",
+  "pause_msg": "Paused",
+  "sections": [
+    {"section":"01_title"},
+    {"section":"02_about_us"},
+    {"section":"03_agenda"},
+    {"section":"04_introduction"},
+    {"section":"05_organize_teams_workflow"},
+    {"section":"06_organize_your_projects"},
+    {"section":"07_testing"},
+    {"section":"08_deployment"},
+    {"section":"09_monitoring"},
+    {"section":"10_conclusion"},
+    {"section":"99_resources"}
+  ]
+}

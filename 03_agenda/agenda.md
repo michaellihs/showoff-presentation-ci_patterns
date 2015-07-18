@@ -6,5 +6,4 @@
 * Using the right Tests
 * Deployment Strategies
 * Monitoring TYPO3 Applications
-* Anti-Patterns
 * Conclusion
